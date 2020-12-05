@@ -968,8 +968,10 @@ defmodule Day5Test do
 
         # when
         result = Day5.highest_id(input)
+        part_2_result = Day5.my_seat(input)
         
         # then
         assert result == 998
+        assert part_2_result == 676
     end
 end

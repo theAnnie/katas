@@ -3,7 +3,7 @@ defmodule Day5 do
     def highest_id(input) do
         input
         |> String.split("\n", trim: true)
-        |> Enum.map(&get_seat_info/1)
+        |> Stream.map(&get_seat_info/1)
         |> Enum.max()
     end
     
@@ -34,4 +34,15 @@ defmodule Day5 do
     defp bin(_min, max, "R" <> ""),  do: max - 1
     defp bin(min, max, "L" <> code), do: bin(min, max - ((max - min) / 2), code)
     defp bin(min, max, "R" <> code), do: bin(min + (max - min) / 2, max, code)
+
+    # part 2
+    def my_seat(input) do
+        input = input
+        |> String.split("\n", trim: true)
+        |> Stream.map(&get_seat_info/1)
+        |> Enum.sort()
+        |> Enum.reduce_while(0, fn x, acc ->
+               if x - 2 != acc, do: {:cont, x}, else: {:halt, x - 1}
+        end)
+    end
 end
