@@ -3,16 +3,16 @@ defmodule Day7 do
     def how_many_bags(input) do
         input 
         |> String.split("\n", trim: true) 
-        |> Enum.map(fn x -> String.replace(x, ~r/bag(s)?/, "") end)
-        |> Enum.map(fn x -> String.split(x, "contain") end)
-        |> Enum.map(fn [a,b] -> [String.trim(a), 
-            String.replace(b ,".", "") 
-            |> String.trim_leading() 
-            |> String.trim_trailing()
+        |> Stream.map(fn x -> String.replace(x, ~r/bag(s)?/, "") end)
+        |> Stream.map(fn x -> String.split(x, "contain") end)
+        |> Stream.map(fn [a,b] -> [String.trim(a), 
+            String.replace(b ,".", "")
             |> String.replace(~r/[0-9]*/, "")
             ] end)
-        |> Enum.map(fn [a,b] -> [a, String.split(b, ",")] end) |> Enum.map(fn [a,b] -> [a, Enum.map(b, fn x -> String.trim_trailing(x) |> String.trim_leading() end) ]end)    
-        |> Enum.map(fn [a,b] -> %{a => b} end)
+        |> Stream.map(fn [a,b] -> [a, String.split(b, ",")] end)
+        |> Stream.map(fn [a,b] -> [a, Enum.map(b, fn x -> String.trim_trailing(x)
+                                              |> String.trim_leading() end) ]end)    
+        |> Stream.map(fn [a,b] -> %{a => b} end)
         |> Enum.reduce(fn x,acc -> Map.merge(acc, x) end)
         |> find_all_colours(["shiny gold"], [])
         |> Enum.uniq()
