@@ -1010,6 +1010,6 @@ defmodule Day9Test do
         result = Day9.calc(input)
 
         # then
-        assert result == 257342611
+        assert result == 35602097
     end
 end
