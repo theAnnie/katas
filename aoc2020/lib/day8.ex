@@ -45,7 +45,7 @@ defmodule Day8 do
 
     defp do_calc2(input, index, visited_indexes, value, indexes_to_try, orginal_input) do
         if Enum.member?(visited_indexes, index) do
-            [h | t] = indexes_to_try |> IO.inspect()
+            [h | t] = indexes_to_try
             input = orginal_input
             |> Stream.with_index()
             |> Enum.map(fn {x,y} -> if y == h, do: replace(x), else: x end)
