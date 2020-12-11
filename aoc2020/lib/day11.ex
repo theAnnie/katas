@@ -12,7 +12,7 @@ defmodule Day11 do
     end
 
     defp do_calc(input) do
-        x = Map.new(input, fn {k, _v} = x -> {k, change_value_of_current(x, input)} end)
+        x = Map.new(input, fn {k, _v} = x -> {k, change_value_of_current2(x, input)} end)
         if x == input, do: calc_result(input), else: do_calc(x)
     end
 
@@ -39,6 +39,33 @@ defmodule Day11 do
         "#" -> if Enum.count(n, fn y -> y == "#" end) > 3, do: "L", else: "#"
         "L" -> if Enum.member?(n, "#"), do: "L", else: "#"
       end
+    end
+
+    # part 2
+    defp change_value_of_current2({{x,y}, v}, input) do
+        n1 = check_while(x, y, input, -1, -1)
+        n2 = check_while(x, y, input, -1,  0)
+        n3 = check_while(x, y, input, -1,  1)
+        n4 = check_while(x, y, input,  0, -1)
+        n5 = check_while(x, y, input,  0,  1)
+        n6 = check_while(x, y, input,  1, -1)
+        n7 = check_while(x, y, input,  1,  0)
+        n8 = check_while(x, y, input,  1,  1)
+      
+        n = [n1, n2, n3, n4, n5, n6, n7, n8]
+
+        case v do
+          "." -> v
+          "#" -> if Enum.count(n, fn y -> y == "#" end) > 4, do: "L", else: "#"
+          "L" -> if Enum.member?(n, "#"), do: "L", else: "#"
+        end
+    end
+
+    defp check_while(x, y, input, x_p, y_p) do
+        case Map.get(input, {x = x + x_p , y = y + y_p}, "L") do
+            "." -> check_while(x, y, input, x_p, y_p)
+            x   -> x
+        end
     end
   end
   
