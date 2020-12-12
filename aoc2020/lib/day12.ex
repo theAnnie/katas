@@ -31,13 +31,13 @@ defmodule Day12 do
     defp handle("E", x, {a, {:e, y}, b, c}), do: {a, {:e, x + y}, b, c}
     defp handle("E", x, {a, {:w, y}, b, c}) do
         z = y - x
-        if z > 0, do: {a, {:e, z}, b, c}, else: {a, {:w, z * (-1)}, b, c}
+        if z > 0, do: {a, {:w, z}, b, c}, else: {a, {:e, z * (-1)}, b, c}
     end
 
     defp handle("W", x, {a, {:w, y}, b, c}), do: {a, {:w, x + y}, b, c}
     defp handle("W", x, {a, {:e, y}, b, c}) do
         z = y - x
-        if z > 0, do: {a, {:w, z}, b, c}, else: {a, {:e, z * (-1)}, b, c}
+        if z > 0, do: {a, {:e, z}, b, c}, else: {a, {:w, z * (-1)}, b, c}
     end
     
     defp handle("R", x, {a, b, {:degrees, y}, {:course, c}}) do
@@ -53,7 +53,7 @@ defmodule Day12 do
     end
 
     defp normalize_degrees(degrees, x) do
-        x = if x == 4, do: 1, else: x
+        x = if x == 5, do: 1, else: x
         if degrees >= 90, do: normalize_degrees(degrees - 90, x + 1), else: {degrees, x}
     end
 
