@@ -810,6 +810,6 @@ defmodule Day12Test do
         result = Day12.ship_location(input)
 
         # then
-        assert result == 25
+        assert result == 1687
     end
 end

@@ -12,7 +12,7 @@ defmodule Day12 do
         [h | t] = input
         [operation | number] = String.graphemes(h)
         {number, ""} = number |> Enum.join() |> Integer.parse()
-        current = handle(operation, number, current_location) |> IO.inspect()
+        current = handle(operation, number, current_location)
         calc(t, current)
     end
 

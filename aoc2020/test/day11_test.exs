@@ -20,7 +20,7 @@ defmodule Day11Test do
         result = Day11.calc(input)
 
         # then
-        assert result == 37
+        assert result == 26
     end
 
     test "test 2" do
@@ -131,6 +131,6 @@ defmodule Day11Test do
         result = Day11.calc(input)
 
         # then
-        assert result == 2453
+        assert result == 2159
     end
 end
