@@ -13,15 +13,12 @@ defmodule Day15 do
         |> Enum.reduce(fn x, acc -> Map.merge(acc, x) end)
     end
 
-    defp do_calc(_, current, 2020), do: current
+    defp do_calc(_, current, 30000000), do: current
     defp do_calc(numbers, current, counter) do
-        if Enum.member?(Map.keys(numbers), current) do
-            c = Map.get(numbers, current)
-            numbers = Map.put(numbers, current, counter)
-            do_calc(numbers, counter - c, counter + 1)           
+        if Map.has_key?(numbers, current) do
+            do_calc(Map.put(numbers, current, counter), counter - Map.get(numbers, current), counter + 1)
         else
-            numbers = Map.put(numbers, current, counter)
-            do_calc(numbers, 0, counter + 1)
+            do_calc(Map.put(numbers, current, counter), 0, counter + 1)
         end
     end
 end
