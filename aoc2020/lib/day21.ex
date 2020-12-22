@@ -12,6 +12,12 @@ defmodule Day21 do
         |> Stream.dedup()
         |> Stream.flat_map(&MapSet.to_list/1)
         |> Enum.count(fn x -> x not in bad end)
+
+        # part 2
+        # bad = do_calc(Enum.group_by(input, &elem(&1, 0), &elem(&1, 1)))
+        # |> Enum.group_by(&elem(&1, 1), &elem(&1, 0))
+        # |> Map.values()
+        # |> Enum.join(",")
     end
 
     defp parse_input(item) do
@@ -35,6 +41,7 @@ defmodule Day21 do
        |> ingrident_with_alg(%{})
     end
 
+    # part 2defp ingrident_with_alg([], results), do: results
     defp ingrident_with_alg([], results), do: Map.keys(results)
     defp ingrident_with_alg(input, results) do
         r = input
