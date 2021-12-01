@@ -2030,8 +2030,32 @@ defmodule Aoc2021Test do
 
     # when
     result = Day1.calc(x)
+    result2 = Day1.calc2(x)
 
     # then
     assert result == 1581
+    assert result2 == 1618
+  end
+
+  test "3" do
+    # given
+    x = """
+    199
+    200
+    208
+    210
+    200
+    207
+    240
+    269
+    260
+    263
+    """
+
+    # when
+    result = Day1.calc2(x)
+
+    # then
+    assert result == 5
   end
 end
