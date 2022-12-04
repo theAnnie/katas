@@ -27,4 +27,29 @@ defmodule Day2 do
   defp normalize("X"), do: 1
   defp normalize("Y"), do: 2
   defp normalize("Z"), do: 3
+
+  def calc2(input) do
+    input
+    |> String.split("\n", trim: true)
+    |> Enum.map(&line_total_2/1)
+    |> Enum.sum()
+  end
+
+  defp line_total_2(line) do
+    [x, y] = String.split(line)
+
+    case {normalize_2(y), normalize(x)} do
+      {"D", x} -> x + 3
+      {"L", 1} -> 3
+      {"L", 2} -> 1
+      {"L", 3} -> 2
+      {"W", 1} -> 2 + 6
+      {"W", 2} -> 3 + 6
+      {"W", 3} -> 1 + 6
+    end
+  end
+
+  defp normalize_2("X"), do: "L"
+  defp normalize_2("Y"), do: "D"
+  defp normalize_2("Z"), do: "W"
 end
