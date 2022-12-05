@@ -30,7 +30,7 @@ defmodule Day3 do
     |> String.split("\n", trim: true)
     |> Enum.chunk_every(3)
     |> Enum.map(&to_map_set2/1)
-    |> Enum.map(fn {a, b,c } -> a |> MapSet.intersection(b) |> MapSet.intersection(c) end)
+    |> Enum.map(fn {a, b, c} -> a |> MapSet.intersection(b) |> MapSet.intersection(c) end)
     |> Enum.map(fn x -> x |> MapSet.to_list() |> hd() |> :binary.first() end)
     |> Enum.map(&to_value/1)
     |> Enum.sum()
