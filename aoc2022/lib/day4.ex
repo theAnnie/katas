@@ -17,4 +17,14 @@ defmodule Day4 do
       {String.to_integer(a), String.to_integer(b)}
     end)
   end
+
+  def calc2(input) do
+    input
+    |> String.split("\n", trim: true)
+    |> Enum.map(&parse/1)
+    |> Enum.map(fn [{a, b}, {c, d}] ->
+      Range.disjoint?(a..b, c..d)
+    end)
+    |> Enum.count(fn x -> x == false end)
+  end
 end
