@@ -13,6 +13,8 @@ defmodule Day5 do
       to_stack = acc[to]
 
       take = from_stack |> Enum.reverse() |> Enum.take(x)
+      # part 2
+      # take = from_stack |> Enum.reverse() |> Enum.take(x) |> Enum.reverse()
       new_from_stack = from_stack |> Enum.drop(-x)
       new_to_stack = to_stack ++ take
 
