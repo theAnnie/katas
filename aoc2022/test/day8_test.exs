@@ -22,4 +22,27 @@ defmodule Day8Test do
 
     assert result == 1690
   end
+
+  test "part 2" do
+    given = """
+    30373
+    25512
+    65332
+    33549
+    35390
+    """
+
+    result = Day8.calc2(given)
+
+    assert result == 8
+  end
+
+
+  test "part 2 input" do
+    given = File.read!("input/8.txt")
+
+    result = Day8.calc2(given)
+
+    assert result == 1690
+  end
 end
